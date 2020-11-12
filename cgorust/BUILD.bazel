@@ -14,7 +14,6 @@ go_library(
     ],
     cgo = True,
     cdeps = ["//person-rs:person"],
-    clinkopts = ["-Lbazel-out/darwin-fastbuild/bin/person-rs -lperson--1006445333"],
     importpath = "cgorust",
     visibility = ["//visibility:private"],
 )
