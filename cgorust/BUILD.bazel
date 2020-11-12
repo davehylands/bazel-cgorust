@@ -1,0 +1,20 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_binary(
+    name = "cgorust",
+    embed = [":cgorust_lib"],
+    visibility = ["//visibility:public"],
+)
+
+go_library(
+    name = "cgorust_lib",
+    srcs = [
+        "main.go",
+        "person.h",
+    ],
+    cgo = True,
+    cdeps = ["//person-rs:person"],
+    clinkopts = ["-Lbazel-out/darwin-fastbuild/bin/person-rs -lperson--1006445333"],
+    importpath = "cgorust",
+    visibility = ["//visibility:private"],
+)
